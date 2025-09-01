@@ -16,7 +16,8 @@ class SnowflakeServiceProvider extends ServiceProvider
             $datacenter = config('snowflake.datacenter', 1);
             $node = config('snowflake.node', 1);
             $format = config('snowflake.format', 'int');
-            return new Snowflake($datacenter, $node, $format);
+            $offset = config('snowflake.offset', 0);
+            return new Snowflake($datacenter, $node, $format, $offset);
         });
     }
 

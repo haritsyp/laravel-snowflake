@@ -8,7 +8,8 @@ use Exception;
 
 class Snowflake
 {
-    const EPOCH = 1609459200000;
+    const EPOCH = 1612224000000;
+
     const DATACENTER_BITS = 5;
     const NODE_BITS = 5;
     const SEQUENCE_BITS = 12;
@@ -25,9 +26,10 @@ class Snowflake
     private $node;
     private $sequence = 0;
     private $lastTimestamp = 0;
-    private $format = 'int'; // 'int' atau 'base62'
+    private $format = 'int';
+    private $offset = 0;
 
-    public function __construct($datacenter, $node, $format = 'int')
+    public function __construct($datacenter = 1, $node = 1, $format = 'int', $offset = 0)
     {
         if ($datacenter < 0 || $datacenter > self::DATACENTER_MAX) {
             throw new Exception('Invalid datacenter ID');
@@ -38,6 +40,7 @@ class Snowflake
         $this->datacenter = $datacenter;
         $this->node = $node;
         $this->format = $format;
+        $this->offset = $offset;
     }
 
     private function timeMillis()
@@ -66,6 +69,8 @@ class Snowflake
             ($this->datacenter << self::DATACENTER_SHIFT) |
             ($this->node << self::NODE_SHIFT) |
             $this->sequence;
+
+        $id += $this->offset;
 
         if ($this->format === 'base62') {
             return Base62::encode($id);
