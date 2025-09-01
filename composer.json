@@ -24,5 +24,12 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^9.6"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Haritsyp\\Snowflake\\Providers\\SnowflakeServiceProvider"
+      ]
+    }
   }
 }

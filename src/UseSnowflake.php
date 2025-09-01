@@ -2,7 +2,7 @@
 
 namespace Haritsyp\Snowflake;
 
-trait UsesSnowflake
+trait UseSnowflake
 {
     /**
      * Boot the trait and assign snowflake ID on creating
