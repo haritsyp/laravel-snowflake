@@ -1,2 +1,1 @@
 # laravel-snowflake
-# laravel-snowflake
