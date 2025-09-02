@@ -35,11 +35,11 @@ composer require haritsyp/laravel-snowflake
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Haritsyp\Snowflake\UsesSnowflake;
+use Haritsyp\Snowflake\UseSnowflake;
 
 class Order extends Model
 {
-    use UsesSnowflake;
+    use UseSnowflake;
 
     public $incrementing = false; // disable auto-increment
 }
